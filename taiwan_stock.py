@@ -4,7 +4,8 @@ import datetime
 stocks = ["2330.TW", "2317.TW", "2454.TW"]
 
 def analyze_stock(symbol):
-    data = yf.download(symbol, period="1mo")
+   time.sleep(1)
+    data = yf.download(symbol, period="1mo", progress=False, threads=False)
     if data.empty:
     return {
         "symbol": symbol,
