@@ -5,6 +5,11 @@ stocks = ["2330.TW", "2317.TW", "2454.TW"]
 
 def analyze_stock(symbol):
     data = yf.download(symbol, period="1mo")
+    if data.empty:
+    return {
+        "symbol": symbol,
+        "error": "抓不到資料"
+    }
 
    latest = data.iloc[-1]
 close_price = float(latest["Close"])
