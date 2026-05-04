@@ -1,5 +1,6 @@
 import yfinance as yf
 import datetime
+import time
 
 stocks = ["2330.TW", "2317.TW", "2454.TW"]
 
