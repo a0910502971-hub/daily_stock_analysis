@@ -1,0 +1,30 @@
+name: Taiwan Stock Analysis
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * 1-5"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install packages
+        run: pip install yfinance
+
+      - name: Run script
+        run: python taiwan_stock.py
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-report
+          path: "*.txt"
