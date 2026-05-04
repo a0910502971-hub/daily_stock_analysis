@@ -1,4 +1,4 @@
-iimport yfinance as yf
+import yfinance as yf
 import datetime
 import time
 import math
