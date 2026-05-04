@@ -6,16 +6,17 @@ stocks = ["2330.TW", "2317.TW", "2454.TW"]
 def analyze_stock(symbol):
     data = yf.download(symbol, period="1mo")
 
-    latest = data.iloc[-1]
-    ma5 = data["Close"].rolling(5).mean().iloc[-1]
-    ma20 = data["Close"].rolling(20).mean().iloc[-1]
+   latest = data.iloc[-1]
+close_price = float(latest["Close"])
 
+ma5 = float(data["Close"].rolling(5).mean().iloc[-1])
+ma20 = float(data["Close"].rolling(20).mean().iloc[-1])
     decision = "觀望"
 
-    if latest["Close"] > ma5 > ma20:
-        decision = "買入"
-    elif latest["Close"] < ma20:
-        decision = "賣出"
+  if close_price > ma5 and ma5 > ma20:
+    decision = "買入"
+elif close_price < ma20:
+    decision = "賣出"
 
     return {
         "symbol": symbol,
